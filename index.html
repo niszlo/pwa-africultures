@@ -49,6 +49,8 @@
             </div>
         </div>
 
+        <div class="bottom-load" id="bottom-load"><img src="includes/lib/img/load.gif" width="10%" /></div>
+		
         <script src="includes/lib/js/jquery.min.js"></script>
         <script src="includes/lib/js/mustache.min.js"></script>
         <script src="includes/app/main.js"></script>
@@ -72,8 +74,6 @@
 
         <div class="blog-post" data-id="{{id}}">
 
-            <a href="index.html" class="button back-button">Go back</a>
-
             <h3>{{title.rendered}} <small>{{date}}</small></h3>
             <img class="thumbnail" src="{{_embedded.wp:featuredmedia.0.source_url}}">
 
@@ -81,14 +81,15 @@
 
             <div class="callout">
                 <ul class="menu simple">
-                    <li>Author: {{_embedded.author.0.name}}</li>
+                    <li>Auteur: {{_embedded.author.0.name}}</li>
                 </ul>
             </div>
+			
+            <a href="index.html" class="button back-button">Retour</a>			
+			
         </div>
 
         </script>
-
-        
         
     </body>
 </html>

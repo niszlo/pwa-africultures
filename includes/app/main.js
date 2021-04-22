@@ -1,6 +1,8 @@
 jQuery(document).ready(function ($) {
 
-    const RESTURL = 'https://wptavern.com/wp-json/'
+    const RESTURL = 'http://africultures.com/wp-json/'
+	var pager = 1
+	var current = 'home'
 
     var app = {
         
@@ -15,6 +17,30 @@ jQuery(document).ready(function ($) {
         
         loadEvents : function() {
             
+			$(window).scroll(function() {
+			   if(current == 'home' && $(window).scrollTop() + $(window).height() == $(document).height()) {
+				   	pager++
+					var url = RESTURL + 'wp/v2/posts?_embed&page='+pager        
+
+					$.get( url )
+						.done( function( response ) {
+							
+							var posts = {
+								posts: response
+							}
+							
+							var template = $( '#blog-post-template' ).html()
+							var output = $( '#main-content' )
+												
+							var result = Mustache.to_html( template, posts )
+							output.append( result )
+							
+						})
+						.fail( function() {
+							alert( 'cannot reload posts' )
+						})
+				}
+			})	
             $( '#main-content' ).on( 'click', '.blog-post h3', this.loadSinglePost )
             $( '#main-content' ).on( 'click', '.blog-post .thumbnail', this.loadSinglePost )
             
@@ -34,9 +60,9 @@ jQuery(document).ready(function ($) {
         },
         
         loadPosts : function() {
-            
-            var url = RESTURL + 'wp/v2/posts?_embed'
-            
+		
+            var url = RESTURL + 'wp/v2/posts?_embed&page='+pager
+            current = 'home'
             $.get( url )
                 .done( function( response ) {
                     
@@ -53,14 +79,14 @@ jQuery(document).ready(function ($) {
                 })
                 .fail( function() {
                     alert( 'cannot load posts' )
-                })
-            
+                })			
+			
         },
-        
+		        
         loadCategories : function() {
             
             var url = RESTURL + 'wp/v2/categories'
-            
+
             $.get( url )
                 .done( function( response ) {
                     
@@ -82,10 +108,10 @@ jQuery(document).ready(function ($) {
         },
         
         loadSinglePost : function() {
-            
+            $( ".bottom-load" ).hide();
             var id = Math.abs( $( this ).parent( '.blog-post' ).data( 'id' ) )
             var url = RESTURL + 'wp/v2/posts/' + id + '?_embed'
-            
+            current = 'single'
             $.get( url )
                 .done( function( response ) {
 
@@ -100,7 +126,7 @@ jQuery(document).ready(function ($) {
                 .fail( function() {
                     alert( 'cannot load post' )
                 })
-            
+            window.scrollTo(0,0);
         }
    
         
