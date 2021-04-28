@@ -14,7 +14,7 @@ jQuery(document).ready(function ($) {
         },
 		
 		goBack : function() {
-			current == 'home'
+			current = 'home'
 			$( "#single-content" ).empty()			
 			$( "#content" ).show()
 			window.scrollTo(0,mark)
