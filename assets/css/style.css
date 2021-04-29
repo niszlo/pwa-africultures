@@ -10,15 +10,79 @@ and open the template in the editor.
     Author     : niszlo	
 */
 
-.top-bar, .top-bar ul  {
-    background-color: black;
+.icons {
+	width: 25px;
+	max-height: 25px;
+}
+.menus {
+	width: 35px;
+}
+
+.overall-menu {
+	display: none;
+	position: absolute;
+	z-index: 3;
+	left: 0;
+	top: 0;
+	width:100%;
+	height:100%;
+}
+#right-menu {
+	background: grey;
+	width:50%;
+	height:100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.catmenu {
+	margin: 2px 5%;
+	display: block;
+	font-weight: bolder;
+}
+#left-menu {
+	background-color: rgba(128, 128, 128, 0.5);
+	width:50%;
+	height:100%;
+	position: absolute;
+	left: 0;
+	top: 0;	
+
+}
+#outburger {
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin: 7px;
+}
+
+.top-bar ul  {
 	padding:0.2rem;
+	background-color: transparent;
+	margin-left: 30px;
+}
+.top-bar {
+	height: 50px;
+	padding:0.2rem;
+	background-color: black;
+	background-image: url('../../includes/lib/img/logo.png');
+	background-size: 35px;
+	background-position: 10px 5px;
+	background-repeat: no-repeat;
 }
 .top-bar ul li {
     color: white;
 }
+.top-bar-right {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	right: 0;
+	margin: 7px;
+}
 
 .callout.primary {
+	height: 50px;
     background-color: #c02026;
 	color: white;
 }
@@ -82,4 +146,8 @@ h3 small {
 			margin:1%
 		}
 	}	
+}
+
+#main-content .c453, #main-content .c464 {
+	display: none !important;
 }

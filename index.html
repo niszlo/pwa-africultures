@@ -9,6 +9,31 @@
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
+	
+        <!-- Start Overall Menu -->
+        <div class="overall-menu">
+			<div id="left-menu"></div>
+			<div id="right-menu">		
+				<img class="menus" id="outburger" src="includes/lib/img/times.svg" />
+				<br />
+				<span data-id="0" class="catmenu"><img class="icons" src="includes/lib/img/actualites.png" />Actualités</span>		
+				<span data-id="40" class="catmenu"><img class="icons" src="includes/lib/img/film.svg" /> Cinéma/TV</span>
+				<span data-id="38" class="catmenu"><img class="icons" src="includes/lib/img/music.svg" /> Musique</span>
+				<span data-id="42" class="catmenu"><img class="icons" src="includes/lib/img/book.svg" /> Littérature/Édition</span>
+				<span data-id="51" class="catmenu"><img class="icons" src="includes/lib/img/cloud-moon.svg" /> Poésie/Conte</span>
+				<span data-id="39" class="catmenu"><img class="icons" src="includes/lib/img/theater.svg" /> Théâtre</span>
+				<span data-id="43" class="catmenu"><img class="icons" src="includes/lib/img/walking.svg" /> Danse</span>
+				<span data-id="54" class="catmenu"><img class="icons" src="includes/lib/img/paint.svg" /> Arts Plastiques</span>
+				<span data-id="263" class="catmenu"><img class="icons" src="includes/lib/img/photo.svg" /> Photographie</span>
+				<span data-id="49" class="catmenu"><img class="icons" src="includes/lib/img/landmark.svg" /> Architecture</span>
+				<span data-id="52" class="catmenu"><img class="icons" src="includes/lib/img/th.svg" /> Bande-dessinée</span>
+				<span data-id="44" class="catmenu"><img class="icons" src="includes/lib/img/tshirt.svg" /> Mode</span>
+				<span data-id="46" class="catmenu"><img class="icons" src="includes/lib/img/history.svg" /> Histoire/Société</span>
+				<span data-id="48" class="catmenu"><img class="icons" src="includes/lib/img/language.svg" /> Interculturel/Migrations</span>
+				<span data-id="47" class="catmenu"><img class="icons" src="includes/lib/img/photo-video.svg" /> Médias</span>
+			</div>
+        </div>
+        <!-- End Overall Menu -->	
 
         <!-- Start Top Bar -->
         <div class="top-bar">
@@ -18,7 +43,7 @@
                 </ul>
             </div>
             <div class="top-bar-right">
-
+				<img class="menus" id="hamburger" src="includes/lib/img/hamburger.png" />
             </div>
         </div>
         <!-- End Top Bar -->
@@ -47,8 +72,8 @@
         
         <script type="text/template" id="blog-post-template">
         {{#posts}}
-        <div class="blog-post" data-id="{{id}}">
-		    <h3><small id="{{categories.0}}">[{{_embedded.wp:term.0.0.name}}]</small><br/>{{{title.rendered}}}</h3>
+        <div class="blog-post c{{categories.0}}" data-id="{{id}}">
+		    <h3><small>[{{_embedded.wp:term.0.0.name}}]</small><br/>{{{title.rendered}}}</h3>
 			<div class="content thumbnail" style="background-image:url('{{_embedded.wp:featuredmedia.0.source_url}}')"> </div>			
 
             <div class="callout">
@@ -62,8 +87,8 @@
 
         <script type="text/template" id="single-post-template">
 
-        <div class="blog-post" data-id="{{id}}">
-            <h3><small id="{{categories.0}}">[{{_embedded.wp:term.0.0.name}}]</small><br/>{{{title.rendered}}}</h3>
+        <div class="blog-post c{{categories.0}}" data-id="{{id}}">
+            <h3><small>[{{_embedded.wp:term.0.0.name}}]</small><br/>{{{title.rendered}}}</h3>
             <img class="single thumbnail" src="{{_embedded.wp:featuredmedia.0.source_url}}">
 
             <div>{{{content.rendered}}}</div>

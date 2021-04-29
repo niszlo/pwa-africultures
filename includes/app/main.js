@@ -4,10 +4,11 @@ jQuery(document).ready(function ($) {
 	var pager = 1
 	var current = 'home'
 	var mark = 0
+	var cat = 0
 
     var app = {
         
-        init : function() {            
+        init : function() {          
 			this.getSiteData()
             this.loadPosts()
             this.loadEvents()        
@@ -24,8 +25,9 @@ jQuery(document).ready(function ($) {
         loadEvents : function() {            
 			$(window).scroll(function() {
 			   if(current == 'home' && $(window).scrollTop() + $(window).height() == $(document).height()) {
-				   	pager++
-					var url = RESTURL + 'wp/v2/posts?_embed&page='+pager        
+				   	pager++  
+					if (cat==0) var url = RESTURL + 'wp/v2/posts?_embed&page='+pager
+					else var url = RESTURL + 'wp/v2/posts?_embed&page='+pager+'&categories='+cat				
 
 					$.get( url )
 						.done( function( response ) {
@@ -48,9 +50,24 @@ jQuery(document).ready(function ($) {
 			})	
             $( '#main-content' ).on( 'click', '.blog-post h3', this.loadSinglePost )
             $( '#main-content' ).on( 'click', '.blog-post .thumbnail', this.loadSinglePost )
-			$( '#single-content' ).on( 'click', '.blog-post .back-button', this.goBack )       
+			$( '#single-content' ).on( 'click', '.blog-post .back-button', this.goBack )
+			$( '.top-bar-right' ).on( 'click', '#hamburger', this.toggler )
+			$( '.overall-menu' ).on( 'click', '#left-menu', this.toggler )
+			$( '#right-menu' ).on( 'click', '#outburger', this.toggler )
+			$( '#right-menu' ).on( 'click', '.catmenu', this.catCall )
         },
         
+		catCall : function() {
+			var id = Math.abs( $( this ).data( 'id' ) )
+			cat = id
+			app.toggler()
+			app.loadPosts()
+		},		
+		
+		toggler : function() {
+			$( ".overall-menu" ).toggle()
+		},
+		
         getSiteData : function() {
             $.get( RESTURL )
                 .done( function( response ) {
@@ -63,7 +80,10 @@ jQuery(document).ready(function ($) {
         },
         
         loadPosts : function() {
-            var url = RESTURL + 'wp/v2/posts?_embed&page='+pager
+			pager = 1
+			$( '#main-content' ).html("")
+			if (cat==0) var url = RESTURL + 'wp/v2/posts?_embed'
+            else var url = RESTURL + 'wp/v2/posts?_embed&categories='+cat
             current = 'home'
             $.get( url )
                 .done( function( response ) {
