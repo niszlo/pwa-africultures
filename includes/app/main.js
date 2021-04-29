@@ -44,7 +44,7 @@ jQuery(document).ready(function ($) {
 							
 						})
 						.fail( function() {
-							alert( 'cannot reload posts' )
+							alert( 'Rien de plus à recharger' )
 						})
 				}
 			})	
@@ -58,10 +58,12 @@ jQuery(document).ready(function ($) {
         },
         
 		catCall : function() {
+			mark = 0
 			var id = Math.abs( $( this ).data( 'id' ) )
 			cat = id
-			app.toggler()
+			app.toggler()	
 			app.loadPosts()
+			app.goBack ()
 		},		
 		
 		toggler : function() {
@@ -75,7 +77,7 @@ jQuery(document).ready(function ($) {
                     $( '.description' ).html( response.description )
                 })
                 .fail( function() {
-                    alert( 'failed to call specified URL' )
+                    alert( 'Rien de plus à afficher' )
                 })
         },
         
@@ -99,7 +101,7 @@ jQuery(document).ready(function ($) {
                     
                 })
                 .fail( function() {
-                    alert( 'cannot load posts' )
+                    alert( 'Rien de plus à charger' )
                 })
         },
 		              
@@ -121,7 +123,7 @@ jQuery(document).ready(function ($) {
                     
                 })
                 .fail( function() {
-                    alert( 'cannot load post' )
+                    alert( 'Rien de plus à ouvrir' )
                 })
             window.scrollTo(0,0)
 			$( "#bottom-load" ).hide()
