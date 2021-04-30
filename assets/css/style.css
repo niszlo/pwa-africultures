@@ -35,18 +35,10 @@ and open the template in the editor.
 	right: 0;
 	top: 0;
 }
-.catmenu, #right-menu a {
+.catmenu {
 	margin: 2px 5%;
 	display: block;
 	font-weight: bolder;
-}
-#right-menu a, #right-menu a:hover, #right-menu a:visited, #right-menu a:link, #right-menu a:active {
-	text-decoration: none;
-	color: black;
-}
-#right-menu hr {
-	margin: 0;
-	padding: 0;
 }
 #left-menu {
 	background-color: rgba(128, 128, 128, 0.5);
@@ -152,6 +144,9 @@ h3 small {
 		#main-content .blog-post {
 			width:95%;
 			margin:1%
+		}
+		.description {
+			font-size:0.75rem;
 		}
 	}	
 }
