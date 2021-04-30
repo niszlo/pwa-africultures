@@ -11,8 +11,8 @@ and open the template in the editor.
 */
 
 .icons {
-	width: 25px;
-	max-height: 25px;
+	width: 20px;
+	max-height: 20px;
 }
 .menus {
 	width: 35px;
@@ -35,10 +35,20 @@ and open the template in the editor.
 	right: 0;
 	top: 0;
 }
-.catmenu {
-	margin: 2px 5%;
+.catmenu, #right-menu a {
+	margin: 0 5%;
 	display: block;
 	font-weight: bolder;
+	line-height: 0;
+}
+#right-menu a, #right-menu a:hover, #right-menu a:visited, #right-menu a:link, #right-menu a:active {
+	text-decoration: none;
+	color: black;
+	display: inline-block;
+}
+#right-menu hr {
+	margin: 3px;
+	padding: 0;
 }
 #left-menu {
 	background-color: rgba(128, 128, 128, 0.5);
@@ -59,7 +69,7 @@ and open the template in the editor.
 .top-bar ul  {
 	padding:0.2rem;
 	background-color: transparent;
-	margin-left: 30px;
+	margin-left: 12px;
 }
 .top-bar {
 	height: 50px;
@@ -67,7 +77,7 @@ and open the template in the editor.
 	background-color: black;
 	background-image: url('../../includes/lib/img/logo.png');
 	background-size: 35px;
-	background-position: 10px 5px;
+	background-position: 0px 5px;
 	background-repeat: no-repeat;
 }
 .top-bar ul li {
@@ -87,10 +97,13 @@ and open the template in the editor.
 	color: white;
 }
 .callout.large {
-	padding:0.5rem;
+	padding: 0.5rem 0 0 0;
 }
 .description {
-	font-size:1.25rem;
+	font-size:1.1rem;
+}
+div.row.column.text-center {
+	padding: 0;
 }
 
 .thumbnail {
@@ -146,9 +159,15 @@ h3 small {
 			margin:1%
 		}
 		.description {
-			font-size:0.75rem;
+			font-size:1rem;
 		}
-	}	
+		#right-menu {
+			width:70%;
+		}
+		#left-menu {
+			width:30%;
+		}
+	}
 }
 
 #main-content .c453, #main-content .c464 {

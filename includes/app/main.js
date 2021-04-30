@@ -51,12 +51,41 @@ jQuery(document).ready(function ($) {
             $( '#main-content' ).on( 'click', '.blog-post h3', this.loadSinglePost )
             $( '#main-content' ).on( 'click', '.blog-post .thumbnail', this.loadSinglePost )
 			$( '#single-content' ).on( 'click', '.blog-post .back-button', this.goBack )
-			$( '.top-bar-right' ).on( 'click', '#hamburger', this.toggler )
+			$( '.top-bar-right' ).on( 'click', '#question', this.question )
+			$( '.top-bar-right' ).on( 'click', '#newsletter', this.newsletter )
+			$( '.top-bar-right' ).on( 'click', '#announce', this.announce )
+			$( '.top-bar-right' ).on( 'click', '#search', this.search )
+			$( '.top-bar-right' ).on( 'click', '#support', this.support )
+			$( '.top-bar-right' ).on( 'click', '#hamburger', this.toggler )			
 			$( '.overall-menu' ).on( 'click', '#left-menu', this.toggler )
 			$( '#right-menu' ).on( 'click', '#outburger', this.toggler )
 			$( '#right-menu' ).on( 'click', '.catmenu', this.catCall )
         },
-        
+		
+		question : function() {
+			window.open('http://africultures.com/qui-sommes-nous/','_blank')
+		},
+		
+		newsletter : function() {
+			window.open('http://africultures.com/lettredinfos','_blank')
+		},
+
+		announce : function() {
+			window.open('http://www.sudplanete.net/auto/01_dev_trad/liste_auto_2.php?lng=_fr','_blank')
+		},
+
+		search : function() {
+			alert('En développement ... merci de votre patience ...');
+		},
+		
+		support : function() {
+			window.open('http://africultures.com/soutenir/','_blank')
+		},		
+		
+		toggler : function() {
+			$( ".overall-menu" ).toggle()
+		},
+		
 		catCall : function() {
 			mark = 0
 			var id = Math.abs( $( this ).data( 'id' ) )
@@ -65,10 +94,6 @@ jQuery(document).ready(function ($) {
 			app.loadPosts()
 			app.goBack ()
 		},		
-		
-		toggler : function() {
-			$( ".overall-menu" ).toggle()
-		},
 		
         getSiteData : function() {
             $.get( RESTURL )
