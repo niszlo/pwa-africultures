@@ -5,10 +5,11 @@ jQuery(document).ready(function ($) {
 	var current = 'posts'
 	var mark = 0
 	var cat = 0
+	var desc = '...'
 
     var app = {
         
-        init : function() {          
+        init : function() {
 			this.getSiteData()
             this.loadPosts()
             this.loadEvents()        
@@ -20,6 +21,12 @@ jQuery(document).ready(function ($) {
 			$( "#content" ).show()
 			window.scrollTo(0,mark)
 			$( "#bottom-load" ).show()
+		},
+		
+		reset : function() {
+			cat = 0
+			app.goBack()
+			app.loadPosts()
 		},
         
         loadEvents : function() {            
@@ -65,7 +72,7 @@ jQuery(document).ready(function ($) {
             $( '#main-content' ).on( 'click', '.blog-post h3', this.loadSinglePost )
             $( '#main-content' ).on( 'click', '.blog-post .thumbnail', this.loadSinglePost )
 			$( '#single-content' ).on( 'click', '.blog-post .back-button', this.goBack )
-			$( '.menu' ).on( 'click', '.site-title', this.loadPosts )
+			$( '.menu' ).on( 'click', '.site-title', this.reset )
 			$( '.top-bar-right' ).on( 'click', '#afritv', this.loadMedias )
 			$( '.top-bar-right' ).on( 'click', '#newsletter', this.newsletter )
 			$( '.top-bar-right' ).on( 'click', '#announce', this.announce )
@@ -75,6 +82,8 @@ jQuery(document).ready(function ($) {
 			$( '.overall-menu' ).on( 'click', '#left-menu', this.toggler )
 			$( '#right-menu' ).on( 'click', '#outburger', this.toggler )
 			$( '#right-menu' ).on( 'click', '.catmenu', this.catCall )
+			$( '#searchform' ).on( 'click', '#close', this.close )
+			$( '#searchform' ).on( 'click', '#check', this.check )
         },
 		
 		question : function() {
@@ -90,8 +99,25 @@ jQuery(document).ready(function ($) {
 		},
 
 		search : function() {
-			alert('En développement ... merci de votre patience ...');
+			$( '.description' ).hide()
+			$( "#searchform" ).show()
+			$( "#keyword" ).empty()
+			$( "#keyword" ).focus()
 		},
+
+		close : function() {
+			$( "#keyword" ).val('')
+			$( "#searchform" ).hide()
+			$( '.description' ).show()
+		},
+
+		check : function() {
+			keyword = $( "#keyword" ).val()
+			$( "#keyword" ).val('')
+			$( "#searchform" ).hide()
+			$( '.description' ).show()
+			alert('En cours de développement ... merci de votre patience ...')
+		},			
 		
 		support : function() {
 			window.open('http://africultures.com/soutenir/','_blank')
@@ -113,39 +139,39 @@ jQuery(document).ready(function ($) {
 		
         getSiteData : function() {
             $.get( RESTURL )
-                .done( function( response ) {
-                    $( '.site-title' ).html( response.name )
-                    $( '.description' ).html( response.description )
-                })
-                .fail( function() {
-                    alert( 'Rien de plus à afficher' )
-                })
+			.done( function( response ) {
+				$( '.site-title' ).html( response.name )
+				desc = response.description
+				$( '.description' ).html( desc )
+			})
+			.fail( function() {
+				alert( 'Rien de plus à afficher' )
+			})
         },
         
         loadPosts : function() {
-			app.goBack()
 			pager = 1
 			$( '#main-content' ).html("")
             current = 'posts'			
 			if (cat==0) var url = RESTURL + 'wp/v2/'+current+'?_embed'
             else var url = RESTURL + 'wp/v2/'+current+'?_embed&categories='+cat
             $.get( url )
-                .done( function( response ) {
-                    
-                    var posts = {
-                        posts: response
-                    }
-					
-                    var template = $( '#blog-post-template' ).html()
-                    var output = $( '#main-content' )
-                    var result = Mustache.to_html( template, posts )
-					
-                    output.append( result )
-                    
-                })
-                .fail( function() {
-                    alert( 'Rien de plus à charger' )
-                })
+			.done( function( response ) {
+				
+				var posts = {
+					posts: response
+				}
+				
+				var template = $( '#blog-post-template' ).html()
+				var output = $( '#main-content' )
+				var result = Mustache.to_html( template, posts )
+				
+				output.append( result )
+				
+			})
+			.fail( function() {
+				alert( 'Rien de plus à charger' )
+			})
         },
 		
         loadMedias : function() {
@@ -155,22 +181,22 @@ jQuery(document).ready(function ($) {
             current = 'medias'			
 			url = RESTURL + 'wp/v2/'+current+'?page='+pager
             $.get( url )
-                .done( function( response ) {
-                    
-                    var medias = {
-                        medias: response
-                    }
-					
-                    var template = $( '#blog-post-template' ).html()
-                    var output = $( '#main-content' )
-                    var result = Mustache.to_html( template, medias )
-					
-                    output.append( result )
-                    
-                })
-                .fail( function() {
-                    alert( 'Rien de plus à charger' )
-                })
+			.done( function( response ) {
+				
+				var medias = {
+					medias: response
+				}
+				
+				var template = $( '#blog-post-template' ).html()
+				var output = $( '#main-content' )
+				var result = Mustache.to_html( template, medias )
+				
+				output.append( result )
+				
+			})
+			.fail( function() {
+				alert( 'Rien de plus à charger' )
+			})
         },		
 		              
         loadSinglePost : function() {
@@ -180,20 +206,20 @@ jQuery(document).ready(function ($) {
             current = 'single'			
             var url = RESTURL + 'wp/v2/posts/' + id + '?_embed'
             $.get( url )
-                .done( function( response ) {
+			.done( function( response ) {
 
-                    
-                    var template = $( '#single-post-template' ).html()
-                    var output = $( '#single-content' )
-                                        
-                    var result = Mustache.to_html( template, response )
-					
-                    output.html( result )
-                    
-                })
-                .fail( function() {
-                    alert( 'Rien de plus à ouvrir' )
-                })
+				
+				var template = $( '#single-post-template' ).html()
+				var output = $( '#single-content' )
+									
+				var result = Mustache.to_html( template, response )
+				
+				output.html( result )
+				
+			})
+			.fail( function() {
+				alert( 'Rien de plus à ouvrir' )
+			})
             window.scrollTo(0,0)
 			$( "#bottom-load" ).hide()
         }

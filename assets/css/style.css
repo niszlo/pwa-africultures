@@ -11,8 +11,8 @@ and open the template in the editor.
 */
 
 .icons {
-	width: 20px;
-	max-height: 20px;
+	width: 18px;
+	max-height: 18px;
 }
 .menus {
 	width: 35px;
@@ -175,4 +175,25 @@ h3 small {
 
 #main-content .c453, #main-content .c464 {
 	display: none !important;
+}
+
+#searchform{
+	height: 40px;
+	padding-right: 5px;
+	display: none;
+}
+.searchblock {
+	float: right;
+	height: 40px;
+	margin: 0;
+}
+#keyword {
+	max-width: 50%;
+	height: 30px;
+	color : white;
+	font-weight: bold;
+	background : none;
+	border: 3px solid white;
+	border-radius: 3px;
+	margin: 5px 5px 0 0;
 }
