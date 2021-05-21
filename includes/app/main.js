@@ -2,7 +2,7 @@ jQuery(document).ready(function ($) {
 
     const RESTURL = 'http://africultures.com/wp-json/'
 	var pager = 1
-	var current = 'home'
+	var current = 'posts'
 	var mark = 0
 	var cat = 0
 
@@ -15,7 +15,7 @@ jQuery(document).ready(function ($) {
         },
 		
 		goBack : function() {
-			current = 'home'
+			current = 'posts'
 			$( "#single-content" ).empty()			
 			$( "#content" ).show()
 			window.scrollTo(0,mark)
@@ -24,22 +24,36 @@ jQuery(document).ready(function ($) {
         
         loadEvents : function() {            
 			$(window).scroll(function() {
-			   if(current == 'home' && $(window).scrollTop() + $(window).height() == $(document).height()) {
-				   	pager++  
-					if (cat==0) var url = RESTURL + 'wp/v2/posts?_embed&page='+pager
-					else var url = RESTURL + 'wp/v2/posts?_embed&page='+pager+'&categories='+cat				
+			   if(current != 'single' && $(window).scrollTop() + $(window).height() == $(document).height()) {
+				   	pager++
+					if (cat==0) var url = RESTURL + 'wp/v2/'+current+'?_embed&page='+pager
+					else var url = RESTURL + 'wp/v2/'+current+'?_embed&page='+pager+'&categories='+cat				
 
 					$.get( url )
 						.done( function( response ) {
 							
-							var posts = {
-								posts: response
+							if(current=='posts') {
+								var posts = {
+									posts: response
+								}
+								
+								var template = $( '#blog-post-template' ).html()
+								var output = $( '#main-content' )
+													
+								var result = Mustache.to_html( template, posts )
 							}
 							
-							var template = $( '#blog-post-template' ).html()
-							var output = $( '#main-content' )
-												
-							var result = Mustache.to_html( template, posts )
+							if(current=='medias') {
+								var medias = {
+									medias: response
+								}
+								
+								var template = $( '#blog-post-template' ).html()
+								var output = $( '#main-content' )
+													
+								var result = Mustache.to_html( template, medias )
+							}							
+							
 							output.append( result )
 							
 						})
@@ -51,7 +65,8 @@ jQuery(document).ready(function ($) {
             $( '#main-content' ).on( 'click', '.blog-post h3', this.loadSinglePost )
             $( '#main-content' ).on( 'click', '.blog-post .thumbnail', this.loadSinglePost )
 			$( '#single-content' ).on( 'click', '.blog-post .back-button', this.goBack )
-			$( '.top-bar-right' ).on( 'click', '#question', this.question )
+			$( '.menu' ).on( 'click', '.site-title', this.loadPosts )
+			$( '.top-bar-right' ).on( 'click', '#afritv', this.loadMedias )
 			$( '.top-bar-right' ).on( 'click', '#newsletter', this.newsletter )
 			$( '.top-bar-right' ).on( 'click', '#announce', this.announce )
 			$( '.top-bar-right' ).on( 'click', '#search', this.search )
@@ -90,9 +105,10 @@ jQuery(document).ready(function ($) {
 			mark = 0
 			var id = Math.abs( $( this ).data( 'id' ) )
 			cat = id
+			current = 'posts'
 			app.toggler()	
 			app.loadPosts()
-			app.goBack ()
+			app.goBack()
 		},		
 		
         getSiteData : function() {
@@ -107,11 +123,12 @@ jQuery(document).ready(function ($) {
         },
         
         loadPosts : function() {
+			app.goBack()
 			pager = 1
 			$( '#main-content' ).html("")
-			if (cat==0) var url = RESTURL + 'wp/v2/posts?_embed'
-            else var url = RESTURL + 'wp/v2/posts?_embed&categories='+cat
-            current = 'home'
+            current = 'posts'			
+			if (cat==0) var url = RESTURL + 'wp/v2/'+current+'?_embed'
+            else var url = RESTURL + 'wp/v2/'+current+'?_embed&categories='+cat
             $.get( url )
                 .done( function( response ) {
                     
@@ -122,6 +139,7 @@ jQuery(document).ready(function ($) {
                     var template = $( '#blog-post-template' ).html()
                     var output = $( '#main-content' )
                     var result = Mustache.to_html( template, posts )
+					
                     output.append( result )
                     
                 })
@@ -129,13 +147,38 @@ jQuery(document).ready(function ($) {
                     alert( 'Rien de plus à charger' )
                 })
         },
+		
+        loadMedias : function() {
+			app.goBack()
+			pager = 1
+			$( '#main-content' ).html("")
+            current = 'medias'			
+			url = RESTURL + 'wp/v2/'+current+'?page='+pager
+            $.get( url )
+                .done( function( response ) {
+                    
+                    var medias = {
+                        medias: response
+                    }
+					
+                    var template = $( '#blog-post-template' ).html()
+                    var output = $( '#main-content' )
+                    var result = Mustache.to_html( template, medias )
+					
+                    output.append( result )
+                    
+                })
+                .fail( function() {
+                    alert( 'Rien de plus à charger' )
+                })
+        },		
 		              
         loadSinglePost : function() {
 			mark = $(window).scrollTop()		
 			$( "#content" ).hide()
             var id = Math.abs( $( this ).parent( '.blog-post' ).data( 'id' ) )
+            current = 'single'			
             var url = RESTURL + 'wp/v2/posts/' + id + '?_embed'
-            current = 'single'
             $.get( url )
                 .done( function( response ) {
 
@@ -144,6 +187,7 @@ jQuery(document).ready(function ($) {
                     var output = $( '#single-content' )
                                         
                     var result = Mustache.to_html( template, response )
+					
                     output.html( result )
                     
                 })

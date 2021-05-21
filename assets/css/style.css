@@ -142,19 +142,19 @@ h3 small {
 	background: #c02026;
 }
 
-#main-content .blog-post {
+#main-content .blog-post, #main-content .media  {
 	list-style-type: none;
 	display:inline-block;
 	width:31%;
 	margin:1%
 }
 @media (max-width: 850px) {
-	#main-content .blog-post {
+	#main-content .blog-post, #main-content .media {
 		width:47%;
 		margin:1%
 	}
 	@media (max-width: 425px) {
-		#main-content .blog-post {
+		#main-content .blog-post, #main-content .media {
 			width:95%;
 			margin:1%
 		}
@@ -168,6 +168,9 @@ h3 small {
 			width:30%;
 		}
 	}
+}
+#main-content .media h3 {
+	color : black;
 }
 
 #main-content .c453, #main-content .c464 {

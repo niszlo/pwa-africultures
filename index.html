@@ -37,6 +37,7 @@
 				<a target="_blank" href="http://africultures.com/publicite-partenariat/"><img class="icons" src="includes/lib/img/advertise.svg" /> Partenaire</a>
 				<a target="_blank" href="http://africultures.com/conditions-generales/"><img class="icons" src="includes/lib/img/contract.svg" /> CGU</a>
 				<a target="_blank" href="http://africultures.com/contact/"><img class="icons" src="includes/lib/img/email.svg" /> Contact</a>
+				<a target="_blank" href="http://africultures.com/qui-sommes-nous/"><img class="icons" src="includes/lib/img/question-circle.svg" /> Infos</a>
 			</div>
         </div>
         <!-- End Overall Menu -->	
@@ -49,7 +50,7 @@
                 </ul>
             </div>
             <div class="top-bar-right">
-				<img class="menus" id="question" src="includes/lib/img/question-circle.png" />
+				<img class="menus" id="afritv" src="includes/lib/img/play-circle.png" />
 				<img class="menus" id="newsletter" src="includes/lib/img/envelope.png" />
 				<img class="menus" id="announce" src="includes/lib/img/bullhorn.png" />				
 				<img class="menus" id="search" src="includes/lib/img/search.png" />				
@@ -94,10 +95,21 @@
             </div>
         </div>
         {{/posts}}
+        {{#medias}}
+		<a target="_blank" href="{{link}}" class="media">
+				<h3><small>[{{media}}]</small><br/>{{{title}}}</h3>
+				<div class="content thumbnail" style="background-image:url('{{image}}')"> </div>			
+
+				<div class="callout">
+					<ul class="menu simple">
+						<li>{{type}}</li>
+					</ul>
+				</div>
+		</a>
+        {{/medias}}		
         </script>
 
         <script type="text/template" id="single-post-template">
-
         <div class="blog-post c{{categories.0}}" data-id="{{id}}">
             <h3><small>[{{_embedded.wp:term.0.0.name}}]</small><br/>{{{title.rendered}}}</h3>
             <img class="single thumbnail" src="{{_embedded.wp:featuredmedia.0.source_url}}">
@@ -113,7 +125,6 @@
             <span class="button back-button">Retour</span>
 			
         </div>
-
         </script>					
         
     </body>
