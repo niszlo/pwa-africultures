@@ -11,8 +11,8 @@ and open the template in the editor.
 */
 
 .icons {
-	width: 18px;
-	max-height: 18px;
+	width: 35px;
+	max-height: 35px;
 }
 .menus {
 	width: 35px;
@@ -28,16 +28,17 @@ and open the template in the editor.
 	height:100%;
 }
 #right-menu {
-	background: grey;
-	width:50%;
+	padding-right: 35px;
+	background: #eee;
+	width:60%;
 	height:100%;
 	position: absolute;
 	right: 0;
 	top: 0;
 }
 .catmenu, #right-menu a {
-	margin: 0 5%;
-	display: block;
+	margin: 3% 4%;
+	display: inline-block;
 	font-weight: bolder;
 	line-height: 0;
 }

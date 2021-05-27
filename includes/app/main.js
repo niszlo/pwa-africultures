@@ -87,15 +87,15 @@ jQuery(document).ready(function ($) {
         },
 		
 		question : function() {
-			window.open('http://africultures.com/qui-sommes-nous/','_blank')
+			window.open('http://africultures.com/qui-sommes-nous/')
 		},
 		
 		newsletter : function() {
-			window.open('http://africultures.com/lettredinfos','_blank')
+			window.open('http://africultures.com/lettredinfos')
 		},
 
 		announce : function() {
-			window.open('http://www.sudplanete.net/auto/01_dev_trad/liste_auto_2.php?lng=_fr','_blank')
+			window.open('http://www.sudplanete.net/auto/01_dev_trad/liste_auto_2.php?lng=_fr')
 		},
 
 		search : function() {
@@ -120,7 +120,7 @@ jQuery(document).ready(function ($) {
 		},			
 		
 		support : function() {
-			window.open('http://africultures.com/soutenir/','_blank')
+			window.open('http://africultures.com/soutenir/')
 		},		
 		
 		toggler : function() {
