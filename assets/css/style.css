@@ -143,19 +143,22 @@ h3 small {
 	background: #c02026;
 }
 
-#main-content .blog-post, #main-content .media  {
+#main-content .blog-post, #main-content .audio, #main-content .video {
 	list-style-type: none;
 	display:inline-block;
 	width:31%;
-	margin:1%
+	margin:1%;
+}
+#main-content .audio .link, #main-content .video .page {
+	display: none;
 }
 @media (max-width: 850px) {
-	#main-content .blog-post, #main-content .media {
+	#main-content .blog-post, #main-content .audio , #main-content .video {
 		width:47%;
 		margin:1%
 	}
 	@media (max-width: 425px) {
-		#main-content .blog-post, #main-content .media {
+		#main-content .blog-post, #main-content .audio , #main-content .video {
 			width:95%;
 			margin:1%
 		}
@@ -170,7 +173,7 @@ h3 small {
 		}
 	}
 }
-#main-content .media h3 {
+#main-content .audio .media h3, #main-content .video .media h3 {
 	color : black;
 }
 
