@@ -53,10 +53,10 @@
             </div>
             <div class="top-bar-right">
 				<img class="menus" id="afritv" src="includes/lib/img/play-circle.png" />
-				<img class="menus" id="newsletter" src="includes/lib/img/envelope.png" />
-				<img class="menus" id="announce" src="includes/lib/img/bullhorn.png" />				
+				<a href="http://africultures.com/lettredinfos"><img class="menus" id="newsletter" src="includes/lib/img/envelope.png" /></a>
+				<a href="http://www.sudplanete.net/auto/01_dev_trad/liste_auto_2.php?lng=_fr"><img class="menus" id="announce" src="includes/lib/img/bullhorn.png" /></a>
 				<img class="menus" id="search" src="includes/lib/img/search.png" />				
-				<img class="menus" id="support" src="includes/lib/img/hands-helping.png" />
+				<a href="http://africultures.com/soutenir/"><img class="menus" id="support" src="includes/lib/img/hands-helping.png" /></a>
 				<img class="menus" id="hamburger" src="includes/lib/img/hamburger.png" />
             </div>
         </div>
@@ -130,7 +130,7 @@
 
         <script type="text/template" id="single-post-template">
         <div class="blog-post c{{categories.0}}" data-id="{{id}}">
-            <h3><small>[{{_embedded.wp:term.0.0.name}}]</small><br/>{{{title.rendered}}}</h3>
+            <h3><small>[{{_embedded.wp:term.0.0.name}}]</small><br/>{{{title.rendered}}}</h3>			
             <img class="single thumbnail" src="{{_embedded.wp:featuredmedia.0.source_url}}">
 
             <div>{{{content.rendered}}}</div>
@@ -140,7 +140,13 @@
                     <li>{{authors}}</li>
                 </ul>
             </div>
-			
+			<div class="shares">
+				<a href="https://www.facebook.com/sharer.php?t={{etitle}}&u={{elink}}"><img class="shareimg" src="includes/lib/shares/fbook.png" /></a>
+				<a href="https://web.whatsapp.com/send?text={{elink}}"><img class="shareimg" src="includes/lib/shares/wapp.png" /></a>
+				<a href="https://twitter.com/intent/tweet?text={{etitle}}&url={{elink}}"><img class="shareimg" src="includes/lib/shares/twit.png" /></a>
+				<a href="mailto:?subject={{etitle}}&body={{elink}}"><img class="shareimg" src="includes/lib/shares/email.png" /></a>
+				<a href="sms:?body={{elink}}"><img class="shareimg" src="includes/lib/shares/sms.png" /></a>				
+			</div>
             <span class="button back-button">Retour</span>
 			
         </div>

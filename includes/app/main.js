@@ -74,30 +74,15 @@ jQuery(document).ready(function ($) {
 			$( '#single-content' ).on( 'click', '.blog-post .back-button', this.goBack )
 			$( '.menu' ).on( 'click', '.site-title', this.reset )
 			$( '.top-bar-right' ).on( 'click', '#afritv', this.loadMedias )
-			$( '.top-bar-right' ).on( 'click', '#newsletter', this.newsletter )
-			$( '.top-bar-right' ).on( 'click', '#announce', this.announce )
 			$( '.top-bar-right' ).on( 'click', '#search', this.search )
-			$( '.top-bar-right' ).on( 'click', '#support', this.support )
 			$( '.top-bar-right' ).on( 'click', '#hamburger', this.toggler )			
 			$( '.overall-menu' ).on( 'click', '#left-menu', this.toggler )
 			$( '#right-menu' ).on( 'click', '#outburger', this.toggler )
 			$( '#right-menu' ).on( 'click', '.catmenu', this.catCall )
 			$( '#searchform' ).on( 'click', '#close', this.close )
 			$( '#searchform' ).on( 'click', '#check', this.check )
-        },
+        },		
 		
-		question : function() {
-			window.open('http://africultures.com/qui-sommes-nous/')
-		},
-		
-		newsletter : function() {
-			window.open('http://africultures.com/lettredinfos')
-		},
-
-		announce : function() {
-			window.open('http://www.sudplanete.net/auto/01_dev_trad/liste_auto_2.php?lng=_fr')
-		},
-
 		search : function() {
 			$( '.description' ).hide()
 			$( "#searchform" ).show()
@@ -117,11 +102,7 @@ jQuery(document).ready(function ($) {
 			$( "#searchform" ).hide()
 			$( '.description' ).show()
 			alert('En cours de développement ... merci de votre patience ...')
-		},			
-		
-		support : function() {
-			window.open('http://africultures.com/soutenir/')
-		},		
+		},				
 		
 		toggler : function() {
 			$( ".overall-menu" ).toggle()
@@ -207,8 +188,12 @@ jQuery(document).ready(function ($) {
             var url = RESTURL + 'wp/v2/posts/' + id + '?_embed'
             $.get( url )
 			.done( function( response ) {
-
 				
+				var elink = encodeURIComponent(response.link);
+				response.elink = elink
+				var etitre = encodeURIComponent(response.title.rendered);
+				response.etitle = etitre
+				console.log('response: ', response)
 				var template = $( '#single-post-template' ).html()
 				var output = $( '#single-content' )
 									
