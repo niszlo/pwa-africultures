@@ -5,6 +5,7 @@ jQuery(document).ready(function ($) {
 	var current = 'posts'
 	var mark = 0
 	var cat = 0
+	var kword = ''
 	var desc = '...'
 
     var app = {
@@ -29,14 +30,16 @@ jQuery(document).ready(function ($) {
 			app.frameOff()
 			cat = 0
 			app.goBack()
+			kword = ''
 			app.loadPosts()
 		},
         
-        loadEvents : function() {            
+        loadEvents : function() {			
 			$(window).scroll(function() {
 			   if(current != 'single' && $(window).scrollTop() + $(window).height() == $(document).height()) {
 				   	pager++
-					if (cat==0) var url = RESTURL + 'wp/v2/'+current+'?_embed&page='+pager
+					if (kword!='') var url = RESTURL + 'wp/v2/'+current+'?_embed&page='+pager+'&search='+kword
+					else if (cat==0) var url = RESTURL + 'wp/v2/'+current+'?_embed&page='+pager
 					else var url = RESTURL + 'wp/v2/'+current+'?_embed&page='+pager+'&categories='+cat				
 
 					$.get( url )
@@ -109,7 +112,16 @@ jQuery(document).ready(function ($) {
 			$( "#keyword" ).val('')
 			$( "#searchform" ).hide()
 			$( '.description' ).show()
-			alert('En cours de développement ... merci de votre patience ...')
+			if(keyword=='') {
+				alert('Veuillez entrer au moins 1 mot!')
+			} else {
+				cat = 0
+				pager = 1
+				kword = encodeURIComponent(keyword)
+				$( '#main-content' ).html("")
+				app.goBack()				
+				app.loadPosts()
+			}
 		},				
 		
 		toggler : function() {
@@ -132,6 +144,7 @@ jQuery(document).ready(function ($) {
 			current = 'posts'
 			app.toggler()	
 			app.frameOff()
+			kword = ''
 			app.loadPosts()
 			app.goBack()
 		},		
@@ -152,8 +165,9 @@ jQuery(document).ready(function ($) {
 			app.frameOff()
 			pager = 1
 			$( '#main-content' ).html("")
-            current = 'posts'			
-			if (cat==0) var url = RESTURL + 'wp/v2/'+current+'?_embed'
+            current = 'posts'
+			if (kword!='') var url = RESTURL + 'wp/v2/'+current+'?_embed&search='+kword
+			else if (cat==0) var url = RESTURL + 'wp/v2/'+current+'?_embed'
             else var url = RESTURL + 'wp/v2/'+current+'?_embed&categories='+cat
             $.get( url )
 			.done( function( response ) {
@@ -209,9 +223,9 @@ jQuery(document).ready(function ($) {
             $.get( url )
 			.done( function( response ) {
 				
-				var elink = encodeURIComponent(response.link);
+				var elink = encodeURIComponent(response.link)
 				response.elink = elink
-				var etitre = encodeURIComponent(response.title.rendered);
+				var etitre = encodeURIComponent(response.title.rendered)
 				response.etitle = etitre
 				console.log('response: ', response)
 				var template = $( '#single-post-template' ).html()
