@@ -164,7 +164,7 @@ h3 small {
 	#main-content .blog-post, #main-content .audio , #main-content .video {
 		width:47%;
 		margin:1%
-	}
+	}	
 	@media (max-width: 425px) {
 		#main-content .blog-post, #main-content .audio , #main-content .video {
 			width:95%;
@@ -213,4 +213,25 @@ h3 small {
 .shareimg {
 	width: 35px;
 	margin: 10px;
+}
+
+#mpub {
+	width: 100%;
+}
+#mpub #mob {
+	width: 100%;
+	display:none;
+	text-align: center;
+}
+#mpub #desk {
+	width: 100%;
+	text-align: center;	
+}
+@media (max-width: 750px) {
+	#mpub #mob {
+		display: block;
+	}
+	#mpub #desk {
+		display: none;
+	}	
 }

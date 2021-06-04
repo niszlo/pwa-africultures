@@ -12,6 +12,7 @@ jQuery(document).ready(function ($) {
         
         init : function() {
 			this.getSiteData()
+			this.getSiteAdd()
             this.loadPosts()
             this.loadEvents()        
         },
@@ -142,6 +143,19 @@ jQuery(document).ready(function ($) {
 				alert( 'Rien de plus à afficher' )
 			})
         },
+		
+        getSiteAdd : function() {
+            $.get( RESTURL+'wp/v2/mpub' )
+			.done( function( response ) {
+				if(response[0].etat==1) {
+				$( '#desk' ).html( '<a target="_blank" href="'+response[0].url+'"><img src="'+response[0].desk+'" /></a>' )
+				$( '#mob' ).html( '<a target="_blank" href="'+response[0].url+'"><img src="'+response[0].mob+'" /></a>' )
+				}
+			})
+			.fail( function() {
+				alert( 'Aucun objet à montrer' )
+			})
+        },		
         
         loadPosts : function() {
 			pager = 1
