@@ -26,6 +26,7 @@ jQuery(document).ready(function ($) {
 		},
 		
 		reset : function() {
+			$( '.description' ).html( desc )
 			cat = 0
 			app.goBack()
 			kword = ''
@@ -111,6 +112,7 @@ jQuery(document).ready(function ($) {
 				cat = 0
 				pager = 1
 				kword = encodeURIComponent(keyword)
+				$( '.description' ).html( kword )
 				$( '#main-content' ).html("")
 				app.goBack()				
 				app.loadPosts()
@@ -121,10 +123,16 @@ jQuery(document).ready(function ($) {
 			$( ".overall-menu" ).toggle()
 		},
 		
-		catCall : function() {
+		catCall : function() {			
 			mark = 0
 			var id = Math.abs( $( this ).data( 'id' ) )
 			cat = id
+            $.get( RESTURL+'wp/v2/categories/'+cat )
+			.done( function( response ) {
+				if(response.name!=''&&response.name!=undefined) {
+					$( '.description' ).html( response.name )
+				}
+			})						
 			current = 'posts'
 			app.toggler()	
 			kword = ''
@@ -187,6 +195,7 @@ jQuery(document).ready(function ($) {
 			app.goBack()
 			pager = 1
 			$( '#main-content' ).html("")
+			$( '.description' ).html( 'Africultures TV' )
             current = 'medias'			
 			url = RESTURL + 'wp/v2/'+current+'?page='+pager
             $.get( url )
