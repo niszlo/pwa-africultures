@@ -11,14 +11,12 @@ jQuery(document).ready(function ($) {
     var app = {
         
         init : function() {
-			this.frameOff()
 			this.getSiteData()
             this.loadPosts()
             this.loadEvents()        
         },
 		
 		goBack : function() {
-			app.frameOff()
 			current = 'posts'
 			$( "#single-content" ).empty()			
 			$( "#content" ).show()
@@ -27,7 +25,6 @@ jQuery(document).ready(function ($) {
 		},
 		
 		reset : function() {
-			app.frameOff()
 			cat = 0
 			app.goBack()
 			kword = ''
@@ -80,16 +77,11 @@ jQuery(document).ready(function ($) {
 			$( '#single-content' ).on( 'click', '.blog-post .back-button', this.goBack )
 			$( '.menu' ).on( 'click', '.site-title', this.reset )
 			$( '.top-bar-right' ).on( 'click', '#afritv', this.loadMedias )
-			$( '.top-bar-right' ).on( 'click', '#newsletter', this.frameOn )
-			$( '.top-bar-right' ).on( 'click', '#announce', this.frameOn )
 			$( '.top-bar-right' ).on( 'click', '#search', this.search )
-			$( '.top-bar-right' ).on( 'click', '#support', this.frameOn )			
 			$( '.top-bar-right' ).on( 'click', '#hamburger', this.toggler )
 			$( '.overall-menu' ).on( 'click', '#left-menu', this.toggler )
 			$( '#right-menu' ).on( 'click', '#outburger', this.toggler )
-			$( '#iframe' ).on( 'click', '#outframer', this.frameOff )
 			$( '#right-menu' ).on( 'click', '.catmenu', this.catCall )
-			$( '#right-menu' ).on( 'click', '.framenu', this.frameOn )
 			$( '#searchform' ).on( 'click', '#close', this.close )
 			$( '#searchform' ).on( 'click', '#check', this.check )
         },		
@@ -128,22 +120,12 @@ jQuery(document).ready(function ($) {
 			$( ".overall-menu" ).toggle()
 		},
 		
-		frameOn : function() {
-			$( "#iframe" ).show()
-			$( ".overall-menu" ).hide()
-		},
-
-		frameOff : function() {
-			$( "#iframe" ).hide()
-		},		
-		
 		catCall : function() {
 			mark = 0
 			var id = Math.abs( $( this ).data( 'id' ) )
 			cat = id
 			current = 'posts'
 			app.toggler()	
-			app.frameOff()
 			kword = ''
 			app.loadPosts()
 			app.goBack()
@@ -162,7 +144,6 @@ jQuery(document).ready(function ($) {
         },
         
         loadPosts : function() {
-			app.frameOff()
 			pager = 1
 			$( '#main-content' ).html("")
             current = 'posts'
@@ -214,7 +195,6 @@ jQuery(document).ready(function ($) {
         },		
 		              
         loadSinglePost : function() {
-			app.frameOff()
 			mark = $(window).scrollTop()		
 			$( "#content" ).hide()
             var id = Math.abs( $( this ).parent( '.blog-post' ).data( 'id' ) )
