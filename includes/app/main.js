@@ -156,8 +156,8 @@ jQuery(document).ready(function ($) {
             $.get( RESTURL+'wp/v2/mpub' )
 			.done( function( response ) {
 				if(response[0].etat==1) {
-				$( '#desk' ).html( '<a target="_blank" href="'+response[0].url+'"><img src="'+response[0].desk+'" /></a>' )
-				$( '#mob' ).html( '<a target="_blank" href="'+response[0].url+'"><img src="'+response[0].mob+'" /></a>' )
+				$( '#desk' ).html( '<a href="'+response[0].url+'"><img src="'+response[0].desk+'" /></a>' )
+				$( '#mob' ).html( '<a href="'+response[0].url+'"><img src="'+response[0].mob+'" /></a>' )
 				}
 			})
 			.fail( function() {
