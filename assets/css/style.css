@@ -139,6 +139,11 @@ h3 small {
 	background: black;
 	padding:0.1rem;
 }
+.callout ul li {
+	color: white;	
+	text-transform: capitalize;
+	font-style: italic;
+}
 
 .button {
 	display: inline-block;
