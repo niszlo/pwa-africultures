@@ -146,12 +146,7 @@ h3 small {
 }
 
 .button {
-	display: inline-block;
 	background: #c02026;
-	color: #fff;
-	padding: .85em 1em;
-	margin: 0 1rem 1rem 0;
-	border: 1px solid transparent;
 }
 .button:hover {
 	background: #c02026;
@@ -240,8 +235,4 @@ h3 small {
 	#mpub #desk {
 		display: none;
 	}	
-}
-
-p {
-	margin-bottom: 1rem;
 }
