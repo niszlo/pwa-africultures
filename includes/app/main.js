@@ -6,7 +6,7 @@ jQuery(document).ready(function ($) {
 	var mark = 0
 	var cat = 0
 	var kword = ''
-	var desc = '...'
+	var desc = 'Actualités'
 
     var app = {
         
@@ -127,12 +127,16 @@ jQuery(document).ready(function ($) {
 			mark = 0
 			var id = Math.abs( $( this ).data( 'id' ) )
 			cat = id
-            $.get( RESTURL+'wp/v2/categories/'+cat )
-			.done( function( response ) {
-				if(response.name!=''&&response.name!=undefined) {
-					$( '.description' ).html( response.name )
-				}
-			})						
+			if(cat>0) {
+				$.get( RESTURL+'wp/v2/categories/'+cat )
+				.done( function( response ) {
+					if(response.name!=''&&response.name!=undefined) {
+						$( '.description' ).html( response.name )
+					} 
+				})
+			} else {
+					$( '.description' ).html( desc )
+			}
 			current = 'posts'
 			app.toggler()	
 			kword = ''
@@ -141,15 +145,8 @@ jQuery(document).ready(function ($) {
 		},		
 		
         getSiteData : function() {
-            $.get( RESTURL )
-			.done( function( response ) {
-				$( '.site-title' ).html( response.name )
-				desc = response.description
-				$( '.description' ).html( desc )
-			})
-			.fail( function() {
-				alert( 'Rien de plus à afficher' )
-			})
+			$( '.site-title' ).html( 'Africultures' )
+			$( '.description' ).html( desc )
         },
 		
         getSiteAdd : function() {
