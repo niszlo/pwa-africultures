@@ -54,6 +54,7 @@ and open the template in the editor.
 	display: inline-block;
 }
 #right-menu hr {
+	border-top: 1px solid grey;
 	margin: 3px;
 	padding: 0;
 }
@@ -74,8 +75,8 @@ and open the template in the editor.
 	z-index: 3;
 }
 
-.top-bar ul  {
-	padding:0.2rem;
+.top-bar .menu  {
+	padding: 0.5rem 0 0 0.2rem;
 	background-color: transparent;
 	margin-left: 12px;
 }
@@ -88,7 +89,7 @@ and open the template in the editor.
 	background-position: 0px 5px;
 	background-repeat: no-repeat;
 }
-.top-bar ul li {
+.top-bar .menu span {
     color: white;
 }
 .top-bar-right {
@@ -138,14 +139,14 @@ h3 small {
 	background: black;
 	padding:0.1rem;
 }
-.callout ul li {
-	color: white;	
-	text-transform: capitalize;
-	font-style: italic;
-}
 
 .button {
+	display: inline-block;
 	background: #c02026;
+	color: #fff;
+	padding: .85em 1em;
+	margin: 0 1rem 1rem 0;
+	border: 1px solid transparent;
 }
 .button:hover {
 	background: #c02026;
@@ -234,4 +235,8 @@ h3 small {
 	#mpub #desk {
 		display: none;
 	}	
+}
+
+p {
+	margin-bottom: 1rem;
 }
