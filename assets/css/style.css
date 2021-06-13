@@ -190,6 +190,10 @@ h3 small {
 	display: none !important;
 }
 
+#single-content {
+	padding-bottom: 50px;
+}
+
 #searchform{
 	height: 40px;
 	padding-right: 5px;
@@ -235,4 +239,14 @@ h3 small {
 	#mpub #desk {
 		display: none;
 	}	
+}
+
+#low-bar {
+	width: 100%;
+	height: 50px;
+	padding: 0.5rem;
+	background-color: black;
+	position: fixed;
+	bottom: 0px;
+	text-align: center;
 }
