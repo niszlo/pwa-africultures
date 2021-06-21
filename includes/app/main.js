@@ -227,7 +227,6 @@ jQuery(document).ready(function ($) {
 				response.elink = elink
 				var etitre = encodeURIComponent(response.title.rendered)
 				response.etitle = etitre
-				console.log('response: ', response)
 				var template = $( '#single-post-template' ).html()
 				var output = $( '#single-content' )
 									
@@ -239,6 +238,17 @@ jQuery(document).ready(function ($) {
 			.fail( function() {
 				alert( 'Rien de plus à ouvrir' )
 			})
+			setTimeout(
+			  function() 
+			  {
+				const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
+				if(isMobileDevice) {
+					if (/iPad|iPhone|iPod/.test(window.navigator.userAgent) && !window.MSStream) {
+						$( '#sharesms' ).hide();
+					}
+				}
+			  }, 2000
+			)			
             window.scrollTo(0,0)
 			$( "#bottom-load" ).hide()
         }
