@@ -28,6 +28,7 @@ jQuery(document).ready(function ($) {
 		reset : function() {
 			$( '.description' ).html( desc )
 			cat = 0
+			pager = 1
 			app.goBack()
 			kword = ''
 			app.loadPosts()
