@@ -1,6 +1,7 @@
 jQuery(document).ready(function ($) {
 
     const RESTURL = 'http://africultures.com/wp-json/'
+	const debug = false;
 	var pager = 1
 	var current = 'posts'
 	var mark = 0
@@ -11,6 +12,7 @@ jQuery(document).ready(function ($) {
     var app = {
         
         init : function() {
+			if(debug) { console.log("init") }
 			this.getSiteData()
 			this.getSiteAdd()
             this.loadPosts()
@@ -18,6 +20,7 @@ jQuery(document).ready(function ($) {
         },
 		
 		goBack : function() {
+			if(debug) { console.log("goBack") }
 			current = 'posts'
 			$( "#single-content" ).empty()			
 			$( "#content" ).show()
@@ -26,18 +29,22 @@ jQuery(document).ready(function ($) {
 		},
 		
 		reset : function() {
+			if(debug) { console.log("reset") }
 			$( '.description' ).html( desc )
 			cat = 0
 			pager = 1
+			$( '#main-content' ).html("")
 			app.goBack()
 			kword = ''
 			app.loadPosts()
 		},
         
-        loadEvents : function() {			
+        loadEvents : function() {
+			if(debug) { console.log("loadEvents") }
 			$(window).scroll(function() {
 			   if(current != 'single' && $(window).scrollTop() + $(window).height() == $(document).height()) {
-				   	pager++
+					pager++
+					if(debug) { console.log(pager) }
 					if (kword!='') var url = RESTURL + 'wp/v2/'+current+'?_embed&page='+pager+'&search='+kword
 					else if (cat==0) var url = RESTURL + 'wp/v2/'+current+'?_embed&page='+pager
 					else var url = RESTURL + 'wp/v2/'+current+'?_embed&page='+pager+'&categories='+cat				
@@ -90,6 +97,7 @@ jQuery(document).ready(function ($) {
         },		
 		
 		search : function() {
+			if(debug) { console.log("search") }
 			$( '.description' ).hide()
 			$( "#searchform" ).show()
 			$( "#keyword" ).empty()
@@ -97,12 +105,14 @@ jQuery(document).ready(function ($) {
 		},
 
 		close : function() {
+			if(debug) { console.log("close") }
 			$( "#keyword" ).val('')
 			$( "#searchform" ).hide()
 			$( '.description' ).show()
 		},
 
 		check : function() {
+			if(debug) { console.log("check") }
 			keyword = $( "#keyword" ).val()
 			$( "#keyword" ).val('')
 			$( "#searchform" ).hide()
@@ -121,10 +131,12 @@ jQuery(document).ready(function ($) {
 		},				
 		
 		toggler : function() {
+			if(debug) { console.log("toggler") }
 			$( ".overall-menu" ).toggle()
 		},
 		
-		catCall : function() {			
+		catCall : function() {
+			if(debug) { console.log("catCall") }	
 			mark = 0
 			var id = Math.abs( $( this ).data( 'id' ) )
 			cat = id
@@ -146,11 +158,13 @@ jQuery(document).ready(function ($) {
 		},		
 		
         getSiteData : function() {
+			if(debug) { console.log("getSiteData") }
 			$( '.site-title' ).html( 'Africultures' )
 			$( '.description' ).html( desc )
         },
 		
         getSiteAdd : function() {
+			if(debug) { console.log("getSiteAdd") }
             $.get( RESTURL+'wp/v2/mpub' )
 			.done( function( response ) {
 				if(response[0].etat==1) {
@@ -164,6 +178,7 @@ jQuery(document).ready(function ($) {
         },		
         
         loadPosts : function() {
+			if(debug) { console.log("loadPosts") }
 			pager = 1
 			$( '#main-content' ).html("")
             current = 'posts'
@@ -190,10 +205,11 @@ jQuery(document).ready(function ($) {
         },
 		
         loadMedias : function() {		
-			app.goBack()
+			if(debug) { console.log("loadMedias") }
 			pager = 1
 			$( '#main-content' ).html("")
 			$( '.description' ).html( 'Africultures TV' )
+			app.goBack()			
             current = 'medias'			
 			url = RESTURL + 'wp/v2/'+current+'?page='+pager
             $.get( url )
@@ -216,6 +232,7 @@ jQuery(document).ready(function ($) {
         },		
 		              
         loadSinglePost : function() {
+			if(debug) { console.log("loadSinglePost") }
 			mark = $(window).scrollTop()		
 			$( "#content" ).hide()
             var id = Math.abs( $( this ).parent( '.blog-post' ).data( 'id' ) )
