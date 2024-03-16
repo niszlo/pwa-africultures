@@ -1,7 +1,8 @@
 jQuery(document).ready(function ($) {
 
-    const RESTURL = 'http://africultures.com/wp-json/'
 	const debug = false;
+    if(location.protocol!=='https:') { RESTURL = 'http://africultures.com/wp-json/' }
+    if(location.protocol=='https:') { RESTURL = 'https://africultures.com/wp-json/' }
 	var pager = 1
 	var current = 'posts'
 	var mark = 0
