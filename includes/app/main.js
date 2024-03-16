@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
 
-    const RESTURL = 'https://africultures.com/wp-json/'
+    const RESTURL = '//africultures.com/wp-json/'
 	const debug = false;
 	var pager = 1
 	var current = 'posts'
