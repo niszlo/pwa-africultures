@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="fr" manifest="cache.manifest">
     <head>
 		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -11,8 +11,9 @@
         <title>Africultures</title>
         <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
         <link rel="stylesheet" href="assets/css/style.css">
+		<script type="text/javascript" src="includes/lib/js/update_cache.js"></script>
     </head>
-    <body>
+    <body onload="checkForUpdate()">
 	
         <!-- Start Overall Menu -->
         <div class="overall-menu">
